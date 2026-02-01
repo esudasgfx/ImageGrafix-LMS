@@ -50,4 +50,4 @@ WORKDIR /var/www/html
 
 EXPOSE 80
 
-CMD ["/start.sh"]
+CMD ["bash", "/start.sh"]
