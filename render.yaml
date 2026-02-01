@@ -2,6 +2,31 @@ services:
   - type: web
     name: imagegrafix-lms
     env: docker
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./Dockerfile-simple
     plan: free
-    autoDeploy: true
+    envVars:
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: imagegrafix-db
+          property: host
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        fromDatabase:
+          name: imagegrafix-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: imagegrafix-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: imagegrafix-db
+          property: password
+
+databases:
+  - name: imagegrafix-db
+    plan: free
+    databaseName: imagegrafix_lms
