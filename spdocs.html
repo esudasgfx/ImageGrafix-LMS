@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html ng-app="docListApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SharePoint Document Links</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #ecf0f1;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:hover {
+            background-color: #f9fbfd;
+        }
+        .doc-link {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .doc-link:hover {
+            text-decoration: underline;
+            color: #1a5276;
+        }
+        .file-type {
+            font-family: monospace;
+            font-size: 0.85em;
+            background: #eaf2f8;
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .info-note {
+            margin-top: 25px;
+            padding: 12px;
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #2c3e50;
+        }
+        .info-note a {
+            color: #2980b9;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        angular.module('docListApp', [])
+            .controller('DocListController', ['$scope', function($scope) {
+                // Define the list of documents.
+                // Each item has a name (display text) and a url (full SharePoint direct link).
+                // Replace these with actual values from your EAM system.
+                $scope.documents = [
+                    {
+                        name: "DFPCL_HX - Photo 1",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_HX/Photos/photo1.jpg",
+                        type: "Image"
+                    },
+                    {
+                        name: "DFPCL_HX - User Manual",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_HX/UserManual/manual.pdf",
+                        type: "PDF"
+                    },
+                    {
+                        name: "DFPCL_COMP - Photo",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_COMP/Photos/compressor.jpg",
+                        type: "Image"
+                    },
+                    {
+                        name: "DFPCL_COMP - User Manual",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_COMP/UserManual/compressor_manual.pdf",
+                        type: "PDF"
+                    },
+                    {
+                        name: "DFPCL_PUMP - Photo",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_PUMP/Photos/pump.png",
+                        type: "Image"
+                    },
+                    {
+                        name: "DFPCL_PUMP - User Manual",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_PUMP/UserManual/pump_manual.pdf",
+                        type: "PDF"
+                    },
+                    {
+                        name: "Work Order 117213 - Maintenance Manual",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117213/maintenance_manual.pdf",
+                        type: "PDF"
+                    },
+                    {
+                        name: "Work Order 117212 - Maintenance Manual",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117212/maintenance_manual.pdf",
+                        type: "PDF"
+                    },
+                    {
+                        name: "Work Order 117211 - Maintenance Manual",
+                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117211/maintenance_manual.pdf",
+                        type: "PDF"
+                    }
+                ];
+
+                // Function to open the document in a new browser tab/window.
+                // This bypasses iframe restrictions and allows SharePoint authentication.
+                $scope.openDocument = function(url) {
+                    window.open(url, '_blank');
+                };
+
+                // Helper to get file extension or type display.
+                $scope.getFileTypeLabel = function(type) {
+                    if (type === 'PDF') return '📄 PDF';
+                    if (type === 'Image') return '🖼️ Image';
+                    return '📎 Document';
+                };
+            }]);
+    </script>
+</head>
+<body ng-controller="DocListController">
+    <div class="container">
+        <h2>📁 SharePoint Documents</h2>
+        <div class="description">
+            Click any document link to open it in a new window.  
+            If you are not already signed into SharePoint, you will be prompted to log in.
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Document Name</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="doc in documents">
+                    <td><strong>{{ doc.name }}</strong></td>
+                    <td><span class="file-type">{{ getFileTypeLabel(doc.type) }}</span></td>
+                    <td>
+                        <a href="javascript:void(0)" 
+                           class="doc-link" 
+                           ng-click="openDocument(doc.url)">
+                            🔗 Open Document
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-if="documents.length === 0">
+                    <td colspan="3" style="text-align:center;">No documents available.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-note">
+            💡 <strong>Note:</strong> Documents open in a new browser tab.  
+            If SharePoint requires authentication, you will see the Microsoft login page.  
+            After successful login, the document will be displayed (image, PDF, or Office online viewer).  
+            This works because the SharePoint URLs are direct links to the files.
+        </div>
+    </div>
+</body>
+</html>
