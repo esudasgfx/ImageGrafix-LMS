@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SharePoint Document Links</title>
+    <title>SharePoint Documents</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -75,8 +75,19 @@
             font-size: 0.9em;
             color: #2c3e50;
         }
-        .info-note a {
-            color: #2980b9;
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .current-id {
+            background: #ecf0f1;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-weight: 500;
         }
         @media (max-width: 600px) {
             .container {
@@ -90,65 +101,62 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script>
         angular.module('docListApp', [])
-            .controller('DocListController', ['$scope', function($scope) {
-                // Define the list of documents.
-                // Each item has a name (display text) and a url (full SharePoint direct link).
-                // Replace these with actual values from your EAM system.
-                $scope.documents = [
-                    {
-                        name: "DFPCL_HX - Photo 1",
-                        url: "https://igfzco.sharepoint.com/:i:/s/SharePointArea/IQBp5ttWyLFARK2UrdHYkeQZARG2cODHswN3rL0I5I4JP_A?e=3OnRwk",
-                        type: "Image"
-                    },
-                    {
-                        name: "DFPCL_HX - User Manual",
-                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_HX/UserManual/manual.pdf",
-                        type: "PDF"
-                    },
-                    {
-                        name: "DFPCL_COMP - Photo",
-                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_COMP/Photos/compressor.jpg",
-                        type: "Image"
-                    },
-                    {
-                        name: "DFPCL_COMP - User Manual",
-                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_COMP/UserManual/compressor_manual.pdf",
-                        type: "PDF"
-                    },
-                    {
-                        name: "DFPCL_PUMP - Photo",
-                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_PUMP/Photos/pump.png",
-                        type: "Image"
-                    },
-                    {
-                        name: "DFPCL_PUMP - User Manual",
-                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_PUMP/UserManual/pump_manual.pdf",
-                        type: "PDF"
-                    },
-                    {
-                        name: "Work Order 117213 - Maintenance Manual",
-                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117213/maintenance_manual.pdf",
-                        type: "PDF"
-                    },
-                    {
-                        name: "Work Order 117212 - Maintenance Manual",
-                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117212/maintenance_manual.pdf",
-                        type: "PDF"
-                    },
-                    {
-                        name: "Work Order 117211 - Maintenance Manual",
-                        url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117211/maintenance_manual.pdf",
-                        type: "PDF"
-                    }
+            .controller('DocListController', ['$scope', '$window', function($scope, $window) {
+                // Helper: get URL parameter
+                function getQueryParam(name) {
+                    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec($window.location.href);
+                    return results ? decodeURIComponent(results[1]) : null;
+                }
+
+                // Get parameters
+                var wono = getQueryParam('wono');
+                var assetcode = getQueryParam('assetcode');
+                
+                $scope.identifier = wono || assetcode;
+                $scope.isWorkOrder = !!wono;
+                $scope.error = null;
+                
+                // Complete document library (each item has 'wo' or 'asset' field for filtering)
+                var allDocuments = [
+                    // Asset documents (linked by asset code)
+                    { name: "DFPCL_HX - Photo 1", url: "https://igfzco.sharepoint.com/:i:/s/SharePointArea/IQBp5ttWyLFARK2UrdHYkeQZARG2cODHswN3rL0I5I4JP_A?e=3OnRwk", type: "Image", asset: "DFPCL_HX" },
+                    { name: "DFPCL_HX - User Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_HX/UserManual/manual.pdf", type: "PDF", asset: "DFPCL_HX" },
+                    { name: "DFPCL_COMP - Photo", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_COMP/Photos/compressor.jpg", type: "Image", asset: "DFPCL_COMP" },
+                    { name: "DFPCL_COMP - User Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_COMP/UserManual/compressor_manual.pdf", type: "PDF", asset: "DFPCL_COMP" },
+                    { name: "DFPCL_PUMP - Photo", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_PUMP/Photos/pump.png", type: "Image", asset: "DFPCL_PUMP" },
+                    { name: "DFPCL_PUMP - User Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_PUMP/UserManual/pump_manual.pdf", type: "PDF", asset: "DFPCL_PUMP" },
+                    // Work order documents (linked by work order number)
+                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117213/maintenance_manual.pdf", type: "PDF", wo: "117213" },
+                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117212/maintenance_manual.pdf", type: "PDF", wo: "117212" },
+                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117211/maintenance_manual.pdf", type: "PDF", wo: "117211" }
                 ];
 
-                // Function to open the document in a new browser tab/window.
-                // This bypasses iframe restrictions and allows SharePoint authentication.
+                // Filter based on identifier
+                if (!$scope.identifier) {
+                    $scope.error = "No work order or asset specified. Please use ?wono=12345 or ?assetcode=ABC in the URL.";
+                    $scope.documents = [];
+                } else {
+                    if ($scope.isWorkOrder) {
+                        $scope.documents = allDocuments.filter(function(doc) {
+                            return doc.wo === $scope.identifier;
+                        });
+                    } else {
+                        $scope.documents = allDocuments.filter(function(doc) {
+                            return doc.asset === $scope.identifier;
+                        });
+                    }
+                    
+                    if ($scope.documents.length === 0) {
+                        $scope.error = "No documents found for " + ($scope.isWorkOrder ? "Work Order" : "Asset") + ": " + $scope.identifier;
+                    }
+                }
+
+                // Open document in new tab
                 $scope.openDocument = function(url) {
-                    window.open(url, '_blank');
+                    $window.open(url, '_blank');
                 };
 
-                // Helper to get file extension or type display.
+                // Helper for display
                 $scope.getFileTypeLabel = function(type) {
                     if (type === 'PDF') return '📄 PDF';
                     if (type === 'Image') return '🖼️ Image';
@@ -160,36 +168,53 @@
 <body ng-controller="DocListController">
     <div class="container">
         <h2>📁 SharePoint Documents</h2>
-        <div class="description">
-            Click any document link to open it in a new window.  
-            If you are not already signed into SharePoint, you will be prompted to log in.
+        
+        <!-- Show current identifier -->
+        <div ng-if="identifier && !error" class="current-id">
+            📌 Showing documents for
+            <strong ng-if="isWorkOrder">Work Order #{{identifier}}</strong>
+            <strong ng-if="!isWorkOrder">Asset: {{identifier}}</strong>
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Document Name</th>
-                    <th>Type</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="doc in documents">
-                    <td><strong>{{ doc.name }}</strong></td>
-                    <td><span class="file-type">{{ getFileTypeLabel(doc.type) }}</span></td>
-                    <td>
-                        <a href="javascript:void(0)" 
-                           class="doc-link" 
-                           ng-click="openDocument(doc.url)">
-                            🔗 Open Document
-                        </a>
-                    </td>
-                </tr>
-                <tr ng-if="documents.length === 0">
-                    <td colspan="3" style="text-align:center;">No documents available.</td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- Error message -->
+        <div ng-if="error" class="error">
+            ⚠️ {{error}}
+        </div>
+
+        <!-- Document table -->
+        <div ng-if="!error">
+            <div class="description" ng-if="documents.length > 0">
+                Click any document link to open it in a new window.  
+                If you are not already signed into SharePoint, you will be prompted to log in.
+            </div>
+
+            <table ng-if="documents.length > 0">
+                <thead>
+                    <tr>
+                        <th>Document Name</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="doc in documents">
+                        <td><strong>{{ doc.name }}</strong></td>
+                        <td><span class="file-type">{{ getFileTypeLabel(doc.type) }}</span></td>
+                        <td>
+                            <a href="javascript:void(0)" 
+                               class="doc-link" 
+                               ng-click="openDocument(doc.url)">
+                                🔗 Open Document
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div ng-if="documents.length === 0 && !error" class="info-note">
+                📭 No documents available for this {{ isWorkOrder ? 'work order' : 'asset' }}.
+            </div>
+        </div>
 
         <div class="info-note">
             💡 <strong>Note:</strong> Documents open in a new browser tab.  
