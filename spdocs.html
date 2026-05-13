@@ -108,6 +108,16 @@
                     return results ? decodeURIComponent(results[1]) : null;
                 }
 
+                const params = new URLSearchParams(window.location.search);
+
+const workordernum = params.get("workordernum");
+const tenant = param.get("tenant");
+const organization = param.get("organization");
+                
+console.log("\nWork Order Number: ", workordernum);
+                console.log("\ntenant: ", tenant);
+                console.log("\norg: ", organization);
+                
                 console.log("URL:", window.location.href);
 
 console.log("QueryString:", window.location.search);
@@ -119,7 +129,7 @@ window.addEventListener("message", (e) => {
 console.log("Parent:", window.parent);
                 
                 // Get parameters
-                var wono = getQueryParam('wono');
+                var wono = workordernum; ///getQueryParam('wono');
                 var assetcode = getQueryParam('assetcode');
                 
                 $scope.identifier = wono || assetcode;
