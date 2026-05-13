@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SharePoint Documents - Deepak Fertilizers</title>
+    <!-- Bootstrap 5 CSS + Icons + optional theme -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container-custom {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .header-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background-color: #ffffff;
+            border-bottom: 2px solid #e9ecef;
+            font-weight: 600;
+            font-size: 1.25rem;
+            padding: 1rem 1.25rem;
+        }
+        .list-group-item {
+            border-left: none;
+            border-right: none;
+            padding: 0.75rem 1.25rem;
+        }
+        .list-group-item:first-child {
+            border-top: none;
+        }
+        .badge-doc {
+            background-color: #e7f1ff;
+            color: #0c63e4;
+            font-weight: 500;
+        }
+        .btn-outline-sharepoint {
+            border-color: #0078d4;
+            color: #0078d4;
+        }
+        .btn-outline-sharepoint:hover {
+            background-color: #0078d4;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+        }
+        @media (max-width: 768px) {
+            .container-custom {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-custom">
+    <!-- Header -->
+    <div class="header-section d-flex justify-content-between align-items-center flex-wrap">
+        <div>
+            <h2 class="mb-1"><i class="bi bi-sharepoint"></i> SharePoint Document Hub</h2>
+            <p class="mb-0 opacity-75">Deepak Fertilizers - Asset & Work Order Documents</p>
+        </div>
+        <div class="mt-2 mt-sm-0">
+            <span class="badge bg-light text-dark p-2"><i class="bi bi-info-circle"></i> Click any link to open</span>
+        </div>
+    </div>
+
+    <!-- Assets Section -->
+    <h3 class="mb-3"><i class="bi bi-diagram-3"></i> Assets</h3>
+    <div class="row g-4 mb-5">
+        <!-- DFPCL_HX -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <i class="bi bi-cpu"></i> DFPCL_HX
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-image-fill text-primary me-2"></i> Image</span>
+                            <a href="https://igfzco.sharepoint.com/:i:/s/..." target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                                <i class="bi bi-box-arrow-up-right"></i> Open
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-file-earmark-text-fill text-success me-2"></i> Manual</span>
+                            <a href="https://igfzco.sharepoint.com/:w:/s/l8" target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                                <i class="bi bi-box-arrow-up-right"></i> Open
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- DFPCL_COMP -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <i class="bi bi-gear"></i> DFPCL_COMP
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-image-fill text-primary me-2"></i> Image</span>
+                            <a href="https://igfzco.sharepoint.com/:i:/s/l7" target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                                <i class="bi bi-box-arrow-up-right"></i> Open
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-file-earmark-text-fill text-success me-2"></i> Manual</span>
+                            <a href="https://igfzco.sharepoint.com/:w:/s/l6" target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                                <i class="bi bi-box-arrow-up-right"></i> Open
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- DFCPCL_Pump -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <i class="bi bi-water"></i> DFCPCL_Pump
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-image-fill text-primary me-2"></i> Image</span>
+                            <a href="https://igfzco.sharepoint.com/:i:/s/l5" target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                                <i class="bi bi-box-arrow-up-right"></i> Open
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-file-earmark-text-fill text-success me-2"></i> Manual</span>
+                            <a href="https://igfzco.sharepoint.com/:w:/s/l4" target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                                <i class="bi bi-box-arrow-up-right"></i> Open
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Work Orders Section -->
+    <h3 class="mb-3"><i class="bi bi-clipboard-check"></i> Work Orders – Maintenance Manuals</h3>
+    <div class="row g-4">
+        <!-- WO 117211 -->
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <i class="bi bi-file-earmark-zip"></i> Work Order 117211
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-file-earmark-pdf-fill text-danger"></i> Maintenance Doc</span>
+                        <a href="https://igfzco.sharepoint.com/:b:/s/l3" target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                            <i class="bi bi-box-arrow-up-right"></i> Open
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- WO 117212 -->
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <i class="bi bi-file-earmark-zip"></i> Work Order 117212
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-file-earmark-pdf-fill text-danger"></i> Maintenance Doc</span>
+                        <a href="https://igfzco.sharepoint.com/:b:/s/l2" target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                            <i class="bi bi-box-arrow-up-right"></i> Open
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- WO 117213 -->
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <i class="bi bi-file-earmark-zip"></i> Work Order 117213
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-file-earmark-pdf-fill text-danger"></i> Maintenance Doc</span>
+                        <a href="https://igfzco.sharepoint.com/:b:/s/l1" target="_blank" class="btn btn-sm btn-outline-sharepoint">
+                            <i class="bi bi-box-arrow-up-right"></i> Open
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Note about SharePoint authentication -->
+    <div class="alert alert-info mt-5 d-flex align-items-center" role="alert">
+        <i class="bi bi-info-circle-fill me-3 fs-4"></i>
+        <div>
+            <strong>Already logged into SharePoint?</strong> If you are signed into Microsoft 365 / SharePoint in your browser, clicking any link will open the document directly.<br>
+            Otherwise, you will be prompted to log in (once per browser session). This page opens documents in a new tab – no iframe embedding issues.
+        </div>
+    </div>
+
+    <footer>
+        <i class="bi bi-share"></i> Integrated with SharePoint Online | Deepak Fertilizers EAM
+    </footer>
+</div>
+
+<!-- Bootstrap JS (optional for interactivity, not strictly needed) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
