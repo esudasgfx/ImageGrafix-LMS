@@ -132,7 +132,7 @@ console.log("Parent:", window.parent);
                 
                 // Get parameters
                 var wono = workordernum; ///getQueryParam('wono');
-                var assetcode = getQueryParam('assetcode');
+                var assetcode = equipmentno; //getQueryParam('assetcode');
                 
                 $scope.identifier = wono || assetcode;
                 $scope.isWorkOrder = !!wono;
