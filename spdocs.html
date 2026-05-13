@@ -141,17 +141,17 @@ console.log("Parent:", window.parent);
                 // Complete document library (each item has 'wo' or 'asset' field for filtering)
                 var allDocuments = [
                     // Asset documents (linked by asset code)
-                    { name: "DFPCL_HX - Photo 1", url: "https://igfzco.sharepoint.com/:i:/s/SharePointArea/IQBp5ttWyLFARK2UrdHYkeQZARG2cODHswN3rL0I5I4JP_A?e=3OnRwk", type: "Image", asset: "DFPCL_HX" },
-                    { name: "DFPCL_HX - User Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_HX/UserManual/manual.pdf", type: "PDF", asset: "DFPCL_HX" },
-                    { name: "DFPCL_COMP - Photo", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_COMP/Photos/compressor.jpg", type: "Image", asset: "DFPCL_COMP" },
-                    { name: "DFPCL_COMP - User Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_COMP/UserManual/compressor_manual.pdf", type: "PDF", asset: "DFPCL_COMP" },
-                    { name: "DFPCL_PUMP - Photo", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_PUMP/Photos/pump.png", type: "Image", asset: "DFPCL_PUMP" },
-                    { name: "DFPCL_PUMP - User Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/Assets/DFPCL_PUMP/UserManual/pump_manual.pdf", type: "PDF", asset: "DFPCL_PUMP" },
+                    { name: "DFPCL_HX - Photo 1", url: "https://igfzco.sharepoint.com/:i:/s/SharePointArea/IQBr7maZwX-SR6SL2gI-_BtZAf6_U2avb3vFMULu-KHjgB8?e=FOcpEM", type: "Image", asset: "DFPCL_HX" },
+                    { name: "DFPCL_HX - User Manual", url: "https://igfzco.sharepoint.com/:w:/s/SharePointArea/IQD9BcOaj3jERKQAqCYzi-huAff7ifkYKJLOriGNE1oa5vU?e=yzEOua", type: "PDF", asset: "DFPCL_HX" },
+                    { name: "DFPCL_COMP - Photo", url: "https://igfzco.sharepoint.com/:i:/s/SharePointArea/IQBmu1f0bIVkS7N-T5Mo91EMAStB6RtwmG5teaFb8g1j20o?e=LrcFnY", type: "Image", asset: "DFPCL_COMP" },
+                    { name: "DFPCL_COMP - User Manual", url: "https://igfzco.sharepoint.com/:w:/s/SharePointArea/IQCOBBJW2qGfQ6Zxr5QbV3_JAY0nExOkp5Ji2mWixhKfErk?e=JKiCQM", type: "PDF", asset: "DFPCL_COMP" },
+                    { name: "DFPCL_PUMP - Photo", url: "https://igfzco.sharepoint.com/:i:/s/SharePointArea/IQBp5ttWyLFARK2UrdHYkeQZARG2cODHswN3rL0I5I4JP_A?e=FpUPXl", type: "Image", asset: "DFPCL_PUMP" },
+                    { name: "DFPCL_PUMP - User Manual", url: "https://igfzco.sharepoint.com/:w:/s/SharePointArea/IQAnNInI9GTJTbYF9wiy4rh6AYehUtJRhCN8l8GGpoFumGI?e=vaceKi", type: "PDF", asset: "DFPCL_PUMP" },
                     // Work order documents (linked by work order number) 
-                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/:i:/s/SharePointArea/IQBp5ttWyLFARK2UrdHYkeQZARG2cODHswN3rL0I5I4JP_A?e=3OnRwk", type: "PDF", wo: "459873" },
-                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117213/maintenance_manual.pdf", type: "PDF", wo: "117213" },
-                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117212/maintenance_manual.pdf", type: "PDF", wo: "117212" },
-                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/sites/SharePointArea/Shared%20Documents/WorkOrders/WO_117211/maintenance_manual.pdf", type: "PDF", wo: "117211" }
+                    //{ name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/:i:/s/SharePointArea/IQBp5ttWyLFARK2UrdHYkeQZARG2cODHswN3rL0I5I4JP_A?e=3OnRwk", type: "PDF", wo: "459873" },
+                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/:b:/s/SharePointArea/IQAfl-NEqdhVRoTPyDy-oiEXAaZuHGGqvETyJp0vK0iAdlg?e=2gj1l0", type: "PDF", wo: "117213" },
+                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/:b:/s/SharePointArea/IQAlhF_tlVcKSJJem7Tr4yzCAek0yVWxq7D1JVqSd53i3EM?e=nsNx0c", wo: "117212" },
+                    { name: "Maintenance Manual", url: "https://igfzco.sharepoint.com/:b:/s/SharePointArea/IQCZwYUFBcOxQqGVhAns4KvOAZwFyxF80h_BpWjUDXGlZvA?e=1auLND", type: "PDF", wo: "117211" }
                 ];
 
                 // Filter based on identifier
